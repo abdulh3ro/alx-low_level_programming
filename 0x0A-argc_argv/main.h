@@ -1,4 +1,4 @@
-#ifndef _HOLBERTON_H_
-#define _HOLBERTON_H_
+#ifndef _main_H_
+#define _main_H_
 
 #endif
