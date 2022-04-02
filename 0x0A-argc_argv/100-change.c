@@ -1,35 +1,54 @@
-@@ -19,22 +19,19 @@ int main(int argc, char *argv[])
+#include <stdlib.h>
+#include <stdio.h>
+#include <ctype.h>
 
-	cents = atoi(argv[1]);
 
-	if (cents > 0)
-	while (cents > 0)
+/**
+ * main - Minimun number of coins to make change
+ * @argc: size of *argv
+ * @argv: array of strings
+ * Return: 0 on success, 1 on error
+ */
+int main(int argc, char *argv[])
+{
+	int coins[5] = {25, 10, 5, 2, 1};
+	int ans = 0, value, coin, i;
+
+	if (argc != 2)
 	{
-		while (cents > 0)
-		{
-			if (cents >= 25)
-				cents -= 25;
-			else if (cents >= 10)
-				cents -= 10;
-			else if (cents >= 5)
-				cents -= 5;
-			else if (cents >= 2)
-				cents -= 2;
-			else if (cents >= 1)
-				cents -= 1;
-			ncoins += 1;
-		}
-		if (cents >= 25)
-			cents -= 25;
-		else if (cents >= 10)
-			cents -= 10;
-		else if (cents >= 5)
-			cents -= 5;
-		else if (cents >= 2)
-			cents -= 2;
-		else if (cents >= 1)
-			cents -= 1;
-		ncoins += 1;
+		printf("Error\n");
+		return (1);
 	}
-	printf("%d\n", ncoins);
+
+	value = atoi(argv[1]);
+
+	if (value < 0)
+	{
+		printf("0\n");
+		return (0);
+	}
+
+	while (value)
+	{
+		coin = 0;
+		for (i = 0; i < 5; i++)
+		{
+			if (value < coins[i])
+			{
+				continue;
+			}
+			else
+			{
+				coin = coins[i];
+				break;
+			}
+		}
+
+		ans +=	value / coin;
+		value %= coin;
+	}
+
+	printf("%d\n", ans);
+
 	return (0);
+}
